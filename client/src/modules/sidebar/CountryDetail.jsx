@@ -5,6 +5,7 @@ import { getcountry } from '../../store/actions/country';
 import './CountryDetail.css'
 
 
+
 function CountryDetail() {
     const dispatch = useDispatch();
     const countryDetail = useSelector(state => state.countryDetail)
@@ -17,7 +18,6 @@ function CountryDetail() {
 
     return(
         <div className= "Centrar">
-            {console.log(countryDetail)}
             {countryDetail ===undefined && <h1>Cargando...</h1>}
             {typeof countryDetail === "object" && (<div>
                 <span>{countryDetail.name}</span>
@@ -30,6 +30,7 @@ function CountryDetail() {
                 <ul>
                     {countryDetail.tourists.length > 0 ? countryDetail.tourists.map( e => {
                     return <li key = {e.id}>
+                    
                         <span>{e.name}</span>
                         <span>{e.duration}</span>
                         <span>{e.season}</span>
@@ -38,19 +39,10 @@ function CountryDetail() {
                     </li>
                     }): <h4>No tiene actividad turistica</h4>}
                 </ul>
-
+                  
                 </div>)}
         </div>
     )
-// ] Los campos mostrados en la ruta principal para cada país (imagen de la bandera, nombre, código de país de 3 letras y continente)
-// [ ] Código de país de 3 letras (id)
-// [ ] Capital
-// [ ] Subregión
-// [ ] Área (Mostrarla en km2 o millones de km2)
-// [ ] Población
-// [ ] Actividades turísticas con toda su información asociada
-
-
 }
 
 export default CountryDetail

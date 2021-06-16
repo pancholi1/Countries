@@ -1,9 +1,12 @@
-import { GET_COUNTRIES, GET_COUNTRY, GET_ALLCOUNTRIES } from '../actions/country'
+import { GET_COUNTRIES, GET_COUNTRY, GET_ALLCOUNTRIES,GET_NAME, GET_ACTIVIDAD } from '../actions/country'
 
 const initialState = {
     country : [],
     countryDetail: undefined,
-    allCountries : []
+    allCountries : [],
+    countryName : [],
+    listAct : []
+
 }
 
 
@@ -27,6 +30,18 @@ const reducer = ( state = initialState, action ) => {
                     ...state,
                     allCountries : action.payload
                 }
+            case  GET_NAME :
+                return{
+                    ...state,
+                    countryName : action.payload
+                }
+            case GET_ACTIVIDAD :
+                return {
+                    ...state,
+                    listAct : action.payload
+                }
+
+                    
         default :
         return {
             ...state

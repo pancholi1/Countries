@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "name": "http://router.get('/country', async (req,res) => {    try {        const apiCountries = await axios.get(\"https://restcountries.eu/rest/v2/all\");        apiCountries.data.forEach( async (element) => {            try {              await Country.create({                    id : element.alpha3Code,                    img : element.flag,                    name : element.name,                    continent : element.region,                    capital: element.capital,                    subregion : element.subregion,                    area : element.area,                    population: element.population,                    region : element.region                })            } catch (error) {                console.log(\"error\")            }        })         const countriesDB = await Country.findAll()        const countries10 = countriesDB.slice(0,10);       return res.send(countries10)    } catch (error) {        res.send(\"error1\")    }})",
+            "request": "launch",
+            "url": "http://router.get('/country', async (req,res) => {    try {        const apiCountries = await axios.get(\"https://restcountries.eu/rest/v2/all\");        apiCountries.data.forEach( async (element) => {            try {              await Country.create({                    id : element.alpha3Code,                    img : element.flag,                    name : element.name,                    continent : element.region,                    capital: element.capital,                    subregion : element.subregion,                    area : element.area,                    population: element.population,                    region : element.region                })            } catch (error) {                console.log(\"error\")            }        })         const countriesDB = await Country.findAll()        const countries10 = countriesDB.slice(0,10);       return res.send(countries10)    } catch (error) {        res.send(\"error1\")    }})"
+        }
+    ]
+}

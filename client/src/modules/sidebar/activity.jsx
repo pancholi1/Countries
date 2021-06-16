@@ -1,7 +1,7 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState} from 'react';
 import axios from 'axios';
-import {useDispatch, useSelector} from 'react-redux';
-import { getAllCountries }from '../../store/actions/country';
+import { useSelector} from 'react-redux';
+import { Multiselect } from 'multiselect-react-dropdown'
 
 
 
@@ -9,19 +9,23 @@ import { getAllCountries }from '../../store/actions/country';
 
 
 const Activity = () => {
-    
-    //**********ESTADO CON PAISES************//
+    const allCountriesGlobal = useSelector( state =>  state.allCountries)
+    const [options] =useState(allCountriesGlobal)
 
-    
-   
-    const countriesGlobalState = useSelector(state => state.allCountries)
-    const dispatch = useDispatch();
+    const prueba = (e) => {
+        console.log(e)
+        const newArray = [];
+        for (let i = 0; i < e.length; i++) {
+           newArray.push(e[i].id)   
+        }
+        console.log(datos)
+       setDatos({...datos,
+        pais: newArray})
+       console.log(datos)
 
-    useEffect(()=>{
-        dispatch(getAllCountries())
-     }, [dispatch])
- 
- 
+    }
+
+
 
     // **********FORMULARIO*************//
 
@@ -35,30 +39,32 @@ const Activity = () => {
     const handleInputChange = (event) => {   
         setDatos({
             ...datos,
-            [event.target.name] : event.target.value,
-            [event.target.pais] : event.target.value,
+            [event.target.name] : event.target.value,     
             [event.target.duration]: event.target.value,
             [event.target.season] : event.target.value
         })
-      
+     
     }
+
 
     const enviarDatos =  async(event) => {
         event.preventDefault()
         datos.duration = parseInt(datos.duration)
-              await axios ({
-                  url : "http://localhost:3001/activity",
-                  method : 'POST',
-                  data : datos
-              })
-
-              return  setDatos(datos)
+        await axios ({
+            url : "http://localhost:3001/tourists/activity",
+            method : 'POST',
+            data : datos
+        })
+        return  setDatos(datos)
     }
+
+    
 
     return (
         <Fragment>
+        
             <h1>Formulario</h1>
-            <form  onSubmit={enviarDatos}>
+            <form  onSubmit={enviarDatos} style={{margin:"50px"}}>
                 <div >
                     <input type="text" placeholder="Nombre" onChange={handleInputChange} name="name"></input>
                 </div>
@@ -72,22 +78,18 @@ const Activity = () => {
                     <option value='otoño'>Otoño</option>
                     <option value="invierno">Invierno</option>
                 </select>
-                 <select name="pais" multiple  onChange={handleInputChange}>
-                    {countriesGlobalState.map( (e) => {
-                        return <option value={[e.name]}> {e.name}</option>
-                    })}
-                </select> 
+            
+                <div style={{width:"50%"}}>
+                    <h1>arriba</h1>
+                    <Multiselect options={options} displayValue="name"  onSelect={prueba} selectedValues="name"></Multiselect>
+                    <h2>Abajo</h2>
+                </div>
 
-             
-                
-                
-                
+
                 <button type="submit" >Enviar</button>
-            </form>
-            <ul>
-                <li>{datos.name}</li>
               
-            </ul>
+            </form>
+            
         </Fragment>
     );
 }
