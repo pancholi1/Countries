@@ -7,14 +7,18 @@ import CountriesShow from './modules/sidebar/showCountry';
 import CountryDetail from './modules/sidebar/CountryDetail';
 import Activity from './modules/sidebar/activity';
 
+import Initation from './modules/sidebar/Initation';
+
 
 function App() {
   return (
       <React.Fragment>
-        <NavBar></NavBar>
-        <Route path ="/home" exact component = {CountriesShow}/>
-        <Route path ="/home/:id" component = {CountryDetail}/>
-        <Route path="/activity" component = {Activity} />
+        <Route path='/' exact component={Initation} />
+        <Route path ='/nav' component = {NavBar} />
+        <Route path ="/nav/home" exact component = {CountriesShow}/>
+        <Route path ="/nav/home/:id" component = {CountryDetail}/>
+        <Route path="/nav/activity" component = {Activity} />
+       
       </React.Fragment>
       
   );

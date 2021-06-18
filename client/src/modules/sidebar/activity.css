@@ -1,0 +1,38 @@
+.text-act{
+    margin-left: 500px;
+}
+.form{
+    margin-left: 420px;
+    padding: 10px;
+}
+.labelform{
+    background: linear-gradient(#93ffff,#042344);
+     background-clip: text;
+     color: transparent; 
+    margin-left: 25px;
+}
+
+
+.inputform{
+    font-size:15px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:cyan;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50px;
+    width:200px;
+    height:50px;
+    margin-left: 80px;
+}
+
+.botonform{
+    font-size:15px;
+    font-family:Verdana,Helvetica;
+    font-weight:bold;
+    color:cyan;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 50px;
+    width:120px;
+    height:50px;
+    margin-left: 130px;
+}

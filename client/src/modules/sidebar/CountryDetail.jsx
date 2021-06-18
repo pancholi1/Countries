@@ -9,38 +9,43 @@ import './CountryDetail.css'
 function CountryDetail() {
     const dispatch = useDispatch();
     const countryDetail = useSelector(state => state.countryDetail)
-    const {id} =useParams()
-
+    const {id} = useParams()
 
         useEffect(()=>{
            dispatch (getcountry(id))
-        },[dispatch])
+        },[])
 
     return(
+
         <div className= "Centrar">
-            {countryDetail ===undefined && <h1>Cargando...</h1>}
-            {typeof countryDetail === "object" && (<div>
-                <span>{countryDetail.name}</span>
+           
+           
+            {typeof countryDetail === "object" && (
+            <div className="divContenedor">
                 <img src={countryDetail.img} className="Tamaño" alt=""/>
-                <span>{id}</span>
-                <span>{countryDetail.capital}</span>
-                <span>{countryDetail.subregion}</span>
-                <span>{countryDetail.area}</span>
-                <span>{countryDetail.population}</span>
+               <div className="divflex">
+                   <div>Country:  {" "+countryDetail.name}</div>
+                   <div>ID:   {" "+id}</div>
+                   <div>Capital:  {" "+countryDetail.capital}</div>
+                   <div>Subregion: {" "+countryDetail.subregion}</div>
+                   <div>Area:{" "+countryDetail.area}</div>
+                   <div>Population :{" "+countryDetail.population}</div>
+              
+               </div>
                 <ul>
-                    {countryDetail.tourists.length > 0 ? countryDetail.tourists.map( e => {
-                    return <li key = {e.id}>
-                    
-                        <span>{e.name}</span>
-                        <span>{e.duration}</span>
-                        <span>{e.season}</span>
-                     
-                    
+                
+                    {countryDetail.tourists.length > 0  ? countryDetail.tourists.map( e => {
+                    return <li key = {e.id}className="liacti">
+                        
+                        <span className="liacti">Activity : {e.name}</span>
+                        <span className="liacti">Difficulty :{e.duration}</span>
+                        <span className="liacti">Season : {e.season}</span>
                     </li>
-                    }): <h4>No tiene actividad turistica</h4>}
+                    }): <h4>No tiene actividad turistica</h4> }
                 </ul>
                   
                 </div>)}
+
         </div>
     )
 }

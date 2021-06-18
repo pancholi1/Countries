@@ -21,11 +21,13 @@ export function getcountries (){
 
 export function getcountry (id){
     return function (dispatch){
-        return axios.get(`http://localhost:3001/countries/ARG`)
+        return axios.get(`http://localhost:3001/countries/${id}`)
             .then( (response) => {
+                console.log("AAaaaaaa",response.data)
                 dispatch( {
                     type: GET_COUNTRY,
                     payload : response.data,
+                    
 
                 })
             })

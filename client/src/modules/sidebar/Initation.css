@@ -1,0 +1,34 @@
+.center { 
+    margin-left: 30px;
+}
+.center2{
+    text-decoration: none;
+    font-size: 80px;
+     background: linear-gradient(#93ffff,#042344);
+     background-clip: text;
+     color: transparent; 
+}
+
+.text{
+    width: 250px;
+    margin-top: 310px;
+    margin-right: 160px;
+    margin-left: 350px;
+    animation-duration: 5s;
+    animation-name: texto;
+    width: 800px;
+}
+
+.sect1{
+    height:100%;;
+}
+
+
+@keyframes texto {
+    from{
+        opacity: 0;;
+    }
+    to{
+        opacity: 1;
+    }
+}

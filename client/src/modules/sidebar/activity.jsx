@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react';
 import axios from 'axios';
 import { useSelector} from 'react-redux';
 import { Multiselect } from 'multiselect-react-dropdown'
+import './activity.css'
 
 
 
@@ -18,11 +19,8 @@ const Activity = () => {
         for (let i = 0; i < e.length; i++) {
            newArray.push(e[i].id)   
         }
-        console.log(datos)
        setDatos({...datos,
-        pais: newArray})
-       console.log(datos)
-
+        pais: newArray}) 
     }
 
 
@@ -43,9 +41,7 @@ const Activity = () => {
             [event.target.duration]: event.target.value,
             [event.target.season] : event.target.value
         })
-     
     }
-
 
     const enviarDatos =  async(event) => {
         event.preventDefault()
@@ -55,38 +51,41 @@ const Activity = () => {
             method : 'POST',
             data : datos
         })
-        return  setDatos(datos)
+        setDatos(datos);
+    
     }
+
+
 
     
 
     return (
         <Fragment>
-        
-            <h1>Formulario</h1>
-            <form  onSubmit={enviarDatos} style={{margin:"50px"}}>
+            <h1 className="text-act">Create activity</h1>
+            <form  onSubmit={enviarDatos} className="form">
+
                 <div >
-                    <input type="text" placeholder="Nombre" onChange={handleInputChange} name="name"></input>
+                    <input type="text" placeholder="Name of the activity" className="inputform" onChange={handleInputChange} name="name"></input>
                 </div>
                 <div >
-                    <input type="number" placeholder="Duracion" onChange={handleInputChange} name="duration"></input>
+                    <label className="labelform" > Difficulty  </label>
+                    <input type="range" min="1" max="5" placeholder="difficulty" onChange={handleInputChange} name="duration"></input>
                 </div>
 
-                <select name="season" value='verano' onChange={handleInputChange}>
+                <select name="season" className="selectform" onChange={handleInputChange}>
+                    <option >Season</option>
                     <option value="verano">Verano</option>
                     <option value="primavera">Primavera</option>
                     <option value='otoño'>Otoño</option>
                     <option value="invierno">Invierno</option>
                 </select>
             
-                <div style={{width:"50%"}}>
-                    <h1>arriba</h1>
+                <div style={{width:"50%"}}>     
                     <Multiselect options={options} displayValue="name"  onSelect={prueba} selectedValues="name"></Multiselect>
-                    <h2>Abajo</h2>
                 </div>
 
 
-                <button type="submit" >Enviar</button>
+                <button type="submit" className="botonform"  >Send</button>
               
             </form>
             
