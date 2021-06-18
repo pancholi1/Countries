@@ -21,7 +21,6 @@ function CountriesShow (){
     const usersPerPage = 10
     const pageVisited = pageNumber * usersPerPage
  
-     
     const displayUsers = countries.slice(pageVisited, pageVisited + usersPerPage).map((country) => {
         return(<ul className= "ul-ordenamiento">
                     <li className="Cuadrado">
@@ -36,8 +35,8 @@ function CountriesShow (){
                    
         </ul>)
     })
-    const pageCount = Math.ceil(countries.length/usersPerPage);
 
+    const pageCount = Math.ceil(countries.length/usersPerPage);
     const changePage = ({selected}) => {
         setPageNUmber(selected)   
     }   
@@ -93,7 +92,11 @@ function CountriesShow (){
     function fylterByNameFunction(e){  
         if(!e.target.value) setCountries(allCountriesGlobal);
         dispatch(getCountryxName(e.target.value))
-        setCountries(countryxName)   
+       
+                setCountries(countryxName)   
+            
+           
+    
     }
 
     function fylterBycontinentFunction (event) {
@@ -132,10 +135,10 @@ function CountriesShow (){
 
                 <div className="botones">
                 <input type="text"className="search" placeholder="search name..." onChange={fylterByNameFunction}/> 
-                <select name='continentes' onChange={fylterBycontinentFunction} className="filtro" >   
+                <select name="continente" onChange={fylterBycontinentFunction} className="filtro" >   
 
 
-                    <option value=''>Continente</option>
+                    <option value=''>Continent</option>
                     <option value='Americas'>Americas</option>
                     <option value='Europe'>Europe</option>
                     <option value='Asia'>Asia</option>
@@ -154,16 +157,13 @@ function CountriesShow (){
                 
                 <button onClick={fylterByDesFunction}  className="boton2" >Z...a</button>
                 <button onClick={fylterByAscFunction} className="boton2"  >A...z</button>
-                <button onClick={fylterByPoblacionPosFunction} className="boton2" > Max. poblados</button>
-                <button onClick={fylterByPoblacionNegFunction}  className="boton2" > Min. poblados </button>  
+                <button onClick={fylterByPoblacionPosFunction} className="boton2" > Max.population </button>
+                <button onClick={fylterByPoblacionNegFunction}  className="boton2" > Min. population </button>  
 
                 </div>
 
-
-
                 <div style={{padding: "20px"}}
                 className="paginacion">
-                  
                     <ReactPaginate 
                                 previousLabel={"Previous"}
                                 nextLabel={ "Next"}
