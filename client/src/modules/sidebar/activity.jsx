@@ -7,8 +7,6 @@ import './activity.css'
 
 
 
-
-
 const Activity = () => {
     const allCountriesGlobal = useSelector( state =>  state.allCountries)
     const [options] =useState(allCountriesGlobal)
@@ -23,16 +21,11 @@ const Activity = () => {
         pais: newArray}) 
     }
 
-
-
+    
+ 
     // **********FORMULARIO*************//
 
-    const [datos, setDatos] = useState({
-        name: 'fra',
-        pais :[ 'Uruguay'],
-        duration : 4,
-        season : 'verano'
-    })
+    const [datos, setDatos] = useState()
 
     const handleInputChange = (event) => {   
         setDatos({
@@ -52,10 +45,23 @@ const Activity = () => {
             data : datos
         })
         setDatos(datos);
+        event.target.reset()
     
     }
 
-
+    const style = {
+        chips: {
+          background: "rgba(0, 0, 0, 0.8)"
+        },
+        searchBox: {
+          border: "none",
+          "border-bottom": "1px solid blue",
+          "border-radius": "0px"
+        },
+        multiselectContainer: {
+          color: "red"
+        }
+      };
 
     
 
@@ -81,8 +87,17 @@ const Activity = () => {
                 </select>
             
                 <div style={{width:"50%"}}>     
-                    <Multiselect options={options} displayValue="name"  onSelect={prueba} selectedValues="name"></Multiselect>
+                    <Multiselect 
+                    options={options} 
+                    placeholder="Insert countries"
+                    displayValue="name"  
+                    onSelect={prueba} 
+                    style={style}
+                    selectedValues="name"></Multiselect>
                 </div>
+                
+            
+                
 
 
                 <button type="submit" className="botonform"  >Send</button>

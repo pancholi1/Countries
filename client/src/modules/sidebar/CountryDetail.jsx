@@ -32,8 +32,9 @@ function CountryDetail() {
                    <div>Population :{" "+countryDetail.population}</div>
               
                </div>
+               
                 <ul>
-                
+    
                     {countryDetail.tourists.length > 0  ? countryDetail.tourists.map( e => {
                     return <li key = {e.id}className="liacti">
                         
